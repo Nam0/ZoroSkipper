@@ -1,38 +1,38 @@
 {
-    "manifest_version": 2,
-    "name": "ZoroSkipper",
-    "version": "1.0",
-    "description": "ZoroSkipper TBD",
-    "icons": {
-        "48": "icons/border-48.png"
-    },
-    "permissions": [
-        "https://w2.zoro.se/anime-watch/*",
-        "https://embtaku.pro/*",
-        "activeTab",
-        "webNavigation",
-        "tabs"
-    ],
-    "content_scripts": [
-        {
-            "matches": [
-                "https://w2.zoro.se/anime-watch/*",
-                "https://embtaku.pro/*"
-            ],
-            "js": [
-                "injector.js"
-            ]
-        }
-    ],
-    "background": {
-        "scripts": [
-            "background.js"
-        ]
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "ZoroSkipper@creepyna.me",
-			"strict_min_version": "58.0"
-        }
+  "manifest_version": 2,
+  "name": "ZoroSkipper",
+  "version": "1.0.1",
+  "description": "Auto Skips and Auto Plays Zoro Videos.",
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ZoroSkipper@creepyna.me",
+      "strict_min_version": "62.0"
     }
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "webNavigation",
+    "tabs",
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "injector.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "options_page": "options.html"
 }

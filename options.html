@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extension Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        h1 {
+            font-size: 24px;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #b0b0b0;
+        }
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #2e2e2e;
+            color: #e0e0e0;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #2e2e2e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Extension Options</h1>
+        <div class="form-group">
+            <label for="mainpage">Main Page URL:</label>
+            <input type="text" id="mainpage" placeholder="https://w2.zoro.se/anime-watch/*" />
+        </div>
+        <div class="form-group">
+            <label for="iframeid">IFrame Element:</label>
+            <input type="text" id="iframeid" placeholder="iframe-embed" />
+        </div>
+        <div class="form-group">
+            <label for="nextButton">Next Button Element:</label>
+            <input type="text" id="nextButton" placeholder=".btn-next" />
+        </div>
+        <div class="form-group">
+            <label for="iframepage">IFrame Page URL:</label>
+            <input type="text" id="iframepage" placeholder="https://embtaku.pro/*" />
+        </div>
+        <div class="form-group">
+            <label for="videoPlayer">Video Player Element:</label>
+            <input type="text" id="videoPlayer" placeholder="video.jw-video.jw-reset" />
+        </div>
+        <div class="form-group">
+            <label for="secondsToWait">Seconds to Wait:</label>
+            <input type="number" id="secondsToWait" placeholder="3" />
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" id="fullScreen" />
+                Full Screen
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" id="autoPlay" />
+                Auto Play
+            </label>
+        </div>
+        <button id="save">Save</button>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>
