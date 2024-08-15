@@ -2,7 +2,7 @@
 
 // Function to get configuration from storage
 const getConfig = async () => {
-    const result = await browser.storage.sync.get(['fullScreen', 'autoPlay', 'secondsToWait', 'iframeId', 'videoPlayer', 'iframepage', 'mainpage', 'nextButton']);
+    const result = await browser.storage.sync.get(['fullScreen', 'autoPlay', 'secondsToWait', 'iframeId', 'videoPlayer', 'iframepage', 'mainpage', 'nextButton', 'autoSelectvStream', 'epSkipKey']);
     return {
         mainpage: result.mainpage || 'https://w2.zoro.se/anime-watch/*',
         fullScreen: result.fullScreen !== undefined ? result.fullScreen : true,
@@ -11,7 +11,9 @@ const getConfig = async () => {
         iframeId: result.iframeId || 'iframe-embed',
         videoPlayer: result.videoPlayer || 'video.jw-video.jw-reset',
         iframepage: result.iframepage || 'https://embtaku.pro/*',
-        nextButton: result.nextButton || '.btn-next'
+        nextButton: result.nextButton || '.btn-next',
+        autoSelectvStream: result.autoSelectvStream !== undefined ? result.autoSelectvStream : false,
+        epSkipKey: result.epSkipKey || 'n'
     };
 };
 

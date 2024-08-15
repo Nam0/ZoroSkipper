@@ -81,6 +81,22 @@ const resizeIframe = (iframeId) => {
     }
 };
 
+// Function to skip to the next episode
+const skipToNextEpisode = async () => {
+    const { nextButton } = await getConfigMsg();
+    try {
+        const nextBtn = document.querySelector(nextButton);
+        if (nextBtn) {
+            simulateClick(nextBtn);
+            console.log('Clicked next button.');
+        } else {
+            console.log('Next button not found.');
+        }
+    } catch (err) {
+        console.error('Error during skip to next:', err);
+    }
+};
+
 // Start the script
 const start = async () => {
     const {
@@ -88,7 +104,9 @@ const start = async () => {
         autoPlay,
         secondsToWait,
         iframeId,
-        videoPlayer
+        videoPlayer,
+        autoSelectvStream,
+        epSkipKey
     } = await getConfigMsg();
 
     await new Promise(resolve => setTimeout(resolve, 1000 * secondsToWait));
@@ -98,6 +116,26 @@ const start = async () => {
             resizeIframe(iframeId);
         }
     }
+
+    if (autoSelectvStream) {
+        const items = document.querySelectorAll('div.item.server-item');
+        items.forEach(item => {
+            const button = item.querySelector('a.btn');
+            if (button && button.textContent.trim() === 'vStream' && !button.classList.contains('active')) {
+                button.click();
+                console.log('vStream button clicked.');
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === epSkipKey) {
+            console.log('Episode skip key pressed:', epSkipKey);
+            window.parent.postMessage({
+                type: 'VIDEO_ENDED'
+            }, '*');
+        }
+    });
 
     try {
         const videoPlayerElement = await waitForElement(videoPlayer);
@@ -114,7 +152,7 @@ const start = async () => {
             window.parent.postMessage({
                 type: 'VIDEO_ENDED'
             }, '*');
-            console.log('Video ended, message sent to parent.');
+            console.log('Video ended, skipping to next episode.');
         });
 
     } catch (error) {

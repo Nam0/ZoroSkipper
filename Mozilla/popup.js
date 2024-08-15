@@ -1,5 +1,4 @@
-//Options.js
-
+//Popup.js
 document.addEventListener('DOMContentLoaded', () => {
     const mainpageInput = document.getElementById('mainpage');
     const iframepageInput = document.getElementById('iframepage');
@@ -9,12 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const secondsToWaitInput = document.getElementById('secondsToWait');
     const videoPlayerInput = document.getElementById('videoPlayer');
     const nextButtonInput = document.getElementById('nextButton');
-    const autoSelectvStreamInput = document.getElementById('autoSelectvStream');
     const epSkipKeyInput = document.getElementById('epSkipKey');
+    const autoSelectvStreamInput = document.getElementById('autoSelectvStream');
     const saveButton = document.getElementById('save');
 
     // Load saved options
-    browser.storage.sync.get(['mainpage', 'iframepage', 'iframeid', 'fullScreen', 'autoPlay','secondsToWait', 'videoPlayer', 'nextButton', 'autoSelectvStream', 'epSkipKey']).then(result => {
+    browser.storage.sync.get([
+        'mainpage', 'iframepage', 'iframeid', 'fullScreen', 'autoPlay', 'secondsToWait', 'videoPlayer', 'nextButton', 'epSkipKey', 'autoSelectvStream'
+    ]).then(result => {
         mainpageInput.value = result.mainpage || 'https://w2.zoro.se/anime-watch/*';
         iframepageInput.value = result.iframepage || 'https://embtaku.pro/*';
         iframeidInput.value = result.iframeid || 'iframe-embed';
@@ -23,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         secondsToWaitInput.value = result.secondsToWait !== undefined ? result.secondsToWait : '3';
         videoPlayerInput.value = result.videoPlayer || 'video.jw-video.jw-reset';
         nextButtonInput.value = result.nextButton || '.btn-next';
-        autoSelectvStreamInput.checked = result.autoSelectvStream !== undefined ? result.autoSelectvStream : false;
         epSkipKeyInput.value = result.epSkipKey || 'n';
+        autoSelectvStreamInput.checked = result.autoSelectvStream !== undefined ? result.autoSelectvStream : true;
     });
 
     // Save options
@@ -38,10 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             secondsToWait: parseInt(secondsToWaitInput.value, 10),
             videoPlayer: videoPlayerInput.value,
             nextButton: nextButtonInput.value,
-            autoSelectvStream: autoSelectvStreamInput.checked,
-            epSkipKey: epSkipKeyInput.value
-        }).then(() => {
-            alert('Options saved.');
+            epSkipKey: epSkipKeyInput.value,
+            autoSelectvStream: autoSelectvStreamInput.checked
         });
     });
 });
